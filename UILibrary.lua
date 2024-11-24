@@ -60,9 +60,9 @@ function UILibrary:CreateWindow(title)
             -- Реализация визуального рендеринга меню
 -- Это будет включать использование Roblox для отрисовки элементов
             -- Примерный рендеринг
-            for , tab in ipairs(self.tabs) do
+            for _, tab in ipairs(self.tabs) do
                 print("Rendering Tab: " .. tab.name)
-                for , element in ipairs(tab.elements) do
+                for _, element in ipairs(tab.elements) do
                     if element.type == "label" then
                         print("Label: " .. element.text)
                     elseif element.type == "button" then
