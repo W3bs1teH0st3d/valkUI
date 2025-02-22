@@ -16,7 +16,7 @@ numpy
 wmi
 pycryptodome
 pywin32
-screen-brightness-control  # для screen_brightness_control
+screen-brightness-control
 win32clipboard
 win32file
 pywin32
