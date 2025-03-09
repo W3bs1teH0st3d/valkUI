@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Captain Underpants IP Dox</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+        }
+        #cookie-notice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            text-align: center;
+        }
+        #cookie-notice.hidden {
+            display: none;
+        }
+        #cookie-notice div {
+            background: #222;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            max-width: 500px;
+        }
+        #cookie-notice button {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+        #cookie-notice button:hover {
+            background: #ddd;
+        }
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: none;
+            transition: opacity 2s ease-in-out;
+        }
+        #prank-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        #info {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            color: #fff;
+            font-size: 16px;
+            white-space: pre-wrap;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: scroll;
+        }
+        #info::-webkit-scrollbar {
+            width: 0;
+        }
+        #info {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="cookie-notice">
+        <div>
+            <p>Этот сайт использует куки для персонализации и защиты данных. Без вашего согласия мы не сможем обеспечить безопасность и функциональность. Пожалуйста, подтвердите или отклоните использование куки, также возможное использование айпи в целях сбора информации об пользователях.</p>
+            <button id="accept">Подтвердить</button>
+            <button id="decline">Отклонить</button>
+        </div>
+    </div>
+    <div id="video-container">
+        <video id="prank-video" autoplay>
+            <source src="videos/dox.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
+    <div id="info"></div>
+
+    <script>
+        const cookieNotice = document.getElementById('cookie-notice');
+        const videoContainer = document.getElementById('video-container');
+        const video = document.getElementById('prank-video');
+        const infoDiv = document.getElementById('info');
+        const acceptBtn = document.getElementById('accept');
+        const declineBtn = document.getElementById('decline');
+
+        // Старт пранка при нажатии любой кнопки
+        function startPrank() {
+            cookieNotice.classList.add('hidden');
+            videoContainer.style.display = 'block';
+            video.play().catch(e => console.error('Ошибка воспроизведения:', e));
+        }
+
+        acceptBtn.addEventListener('click', startPrank);
+        declineBtn.addEventListener('click', startPrank);
+
+        // Плавный вывод текста за 16 секунд
+        function printInfoSlowly(text) {
+            const lines = text.split('\n');
+            const totalTime = 16000; // 16 секунд в миллисекундах
+            const delay = totalTime / lines.length; // Задержка между строками
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < lines.length) {
+                    infoDiv.textContent += lines[index] + '\n';
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, delay);
+        }
+
+        // Максимальный сбор данных с кучей "мусора"
+        async function gatherMaxInfo() {
+            let info = 'OHH BROTHER!! dsc.gg/ZeroTiss\n';
+
+            info += `User-Agent: ${navigator.userAgent}\n`;
+            info += `Язык: ${navigator.language || navigator.userLanguage}\n`;
+            info += `Все языки: ${navigator.languages.join(', ')}\n`;
+            info += `Платформа: ${navigator.platform}\n`;
+            info += `Процессоры (ядра): ${navigator.hardwareConcurrency || 'Неизвестно'}\n`;
+            info += `Объём памяти (примерно): ${navigator.deviceMemory || 'Неизвестно'} ГБ\n`;
+            info += `Куки: ${navigator.cookieEnabled ? 'Включены' : 'Выключены'}\n`;
+            info += `Do Not Track: ${navigator.doNotTrack || 'Не указано'}\n`;
+            info += `Режим инкогнито: ${window.chrome && !window.chrome.runtime ? 'Возможно' : 'Нет'}\n`;
+            info += `URL: ${window.location.href}\n`;
+            info += `Реферер: ${document.referrer || 'Отсутствует'}\n`;
+            info += `Название документа: ${document.title}\n`;
+            info += `Последнее изменение страницы: ${document.lastModified}\n`;
+            info += `Кодировка страницы: ${document.characterSet}\n`;
+            info += `Режим совместимости: ${document.compatMode}\n`;
+            info += `Количество элементов DOM: ${document.getElementsByTagName('*').length}\n`;
+
+            info += `Разрешение экрана: ${screen.width}x${screen.height}\n`;
+            info += `Доступное разрешение: ${screen.availWidth}x${screen.availHeight}\n`;
+            info += `Размер окна: ${window.innerWidth}x${window.innerHeight}\n`;
+            info += `Размер внешнего окна: ${window.outerWidth}x${window.outerHeight}\n`;
+            info += `Позиция окна: (${window.screenX}, ${window.screenY})\n`;
+            info += `Ориентация экрана: ${screen.orientation ? screen.orientation.type : 'Неизвестно'}\n`;
+            info += `Угол ориентации: ${screen.orientation ? screen.orientation.angle : 'Неизвестно'}\n`;
+            info += `Глубина цвета: ${screen.colorDepth}\n`;
+            info += `Бит на пиксель: ${screen.pixelDepth}\n`;
+            info += `Пиксельная плотность: ${window.devicePixelRatio}\n`;
+            info += `Сенсорный экран: ${navigator.maxTouchPoints > 0 ? 'Да' : 'Нет'}\n`;
+            info += `Макс. точек касания: ${navigator.maxTouchPoints || 'Неизвестно'}\n`;
+            info += `Вибрация доступна: ${navigator.vibrate ? 'Да' : 'Нет'}\n`;
+            info += `Полный экран поддерживается: ${document.fullscreenEnabled ? 'Да' : 'Нет'}\n`;
+
+            info += `Часовой пояс: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+            info += `Локальное время: ${new Date().toLocaleString()}\n`;
+            info += `Смещение UTC: ${new Date().getTimezoneOffset() / -60} часов\n`;
+            info += `Точное время запуска: ${new Date().toISOString()}\n`;
+            info += `Миллисекунды с эпохи: ${Date.now()}\n`;
+            info += `Локаль системы: ${Intl.DateTimeFormat().resolvedOptions().locale}\n`;
+
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (connection) {
+                info += `Тип соединения: ${connection.effectiveType}\n`;
+                info += `Скорость: ${connection.downlink} Мбит/с\n`;
+                info += `Макс. скорость: ${connection.downlinkMax || 'Неизвестно'} Мбит/с\n`;
+                info += `Задержка: ${connection.rtt} мс\n`;
+                info += `Экономия трафика: ${connection.saveData ? 'Да' : 'Нет'}\n`;
+                info += `Тип сети: ${connection.type || 'Неизвестно'}\n`;
+            }
+
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                info += `Публичный IP: ${ipData.ip}\n`;
+            } catch (e) {
+                info += `Публичный IP: Ошибка (${e.message})\n`;
+            }
+
+            let webrtcIps = [];
+            try {
+                const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+                pc.createDataChannel('');
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        const ip = event.candidate.candidate.match(/(\d+\.\d+\.\d+\.\d+)/);
+                        if (ip && !webrtcIps.includes(ip[0])) webrtcIps.push(ip[0]);
+                    }
+                };
+                await pc.createOffer().then(offer => pc.setLocalDescription(offer));
+                setTimeout(() => pc.close(), 1500);
+            } catch (e) {}
+            info += `Локальные IP (WebRTC): ${webrtcIps.length ? webrtcIps.join(', ') : 'Не удалось'}\n`;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillStyle = 'rgb(255, 255, 255)';
+            ctx.fillText('DOXED BY CAPTAIN UNDERPANTS', 10, 50);
+            ctx.strokeStyle = 'rgb(255, 0, 0)';
+            ctx.strokeRect(5, 5, 150, 100);
+            info += `Canvas Fingerprint: ${canvas.toDataURL().substring(0, 50)}...\n`;
+            info += `Canvas Размер: ${canvas.width}x${canvas.height}\n`;
+
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                info += `WebGL Renderer: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Неизвестно'}\n`;
+                info += `WebGL Vendor: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Неизвестно'}\n`;
+                info += `WebGL Версия: ${gl.getParameter(gl.VERSION)}\n`;
+                info += `Shader Версия: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}\n`;
+                info += `Макс. текстур: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}\n`;
+                info += `Макс. вершин: ${gl.getParameter(gl.MAX_VERTEX_ATTRIBS)}\n`;
+            }
+
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 440;
+                const compressor = audioCtx.createDynamicsCompressor();
+                info += `Audio Fingerprint: ${audioCtx.sampleRate} Hz\n`;
+                info += `Состояние AudioContext: ${audioCtx.state}\n`;
+                info += `Базовая задержка: ${audioCtx.baseLatency || 'Неизвестно'} сек\n`;
+                audioCtx.close();
+            } catch (e) {
+                info += `Audio Fingerprint: Не удалось (${e.message})\n`;
+            }
+
+            if (navigator.plugins && navigator.plugins.length) {
+                info += `Плагины (${navigator.plugins.length}):\n`;
+                Array.from(navigator.plugins).forEach(p => {
+                    info += ` - ${p.name} (Версия: ${p.version}, Описание: ${p.description}, Файл: ${p.filename})\n`;
+                });
+            } else {
+                info += `Плагины: Не найдены\n`;
+            }
+
+            if (navigator.mimeTypes && navigator.mimeTypes.length) {
+                info += `MIME-типы (${navigator.mimeTypes.length}):\n`;
+                Array.from(navigator.mimeTypes).forEach(m => {
+                    info += ` - ${m.type} (Описание: ${m.description}, Суффиксы: ${m.suffixes})\n`;
+                });
+            }
+
+            const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Comic Sans MS', 'Impact', 'Monospace', 'Calibri', 'Garamond', 'Palatino', 'Futura', 'Arial Black', 'Book Antiqua', 'Lucida Sans'];
+            const detectedFonts = fonts.filter(font => {
+                const span = document.createElement('span');
+                span.style.fontFamily = font;
+                span.textContent = 'test';
+                document.body.appendChild(span);
+                const width = span.offsetWidth;
+                document.body.removeChild(span);
+                return width > 0;
+            });
+            info += `Шрифты (${detectedFonts.length}): ${detectedFonts.join(', ')}\n`;
+
+            if (navigator.getBattery) {
+                const battery = await navigator.getBattery();
+                info += `Батарея: ${Math.round(battery.level * 100)}%\n`;
+                info += `Заряжается: ${battery.charging ? 'Да' : 'Нет'}\n`;
+                info += `Время зарядки: ${battery.chargingTime === Infinity ? 'Неизвестно' : battery.chargingTime / 60} мин\n`;
+                info += `Время до разряда: ${battery.dischargingTime === Infinity ? 'Неизвестно' : battery.dischargingTime / 60} мин\n`;
+            }
+
+            if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                info += `Устройства ввода/вывода (${devices.length}):\n`;
+                devices.forEach(d => {
+                    info += ` - ${d.kind}: ${d.label || 'Без имени'} (ID: ${d.deviceId}, Группа: ${d.groupId})\n`;
+                });
+            }
+
+            const perf = performance.timing || {};
+            info += `Время загрузки страницы: ${(perf.domContentLoadedEventEnd - perf.navigationStart) / 1000 || 'Неизвестно'} сек\n`;
+            info += `Время до первого байта: ${(perf.responseStart - perf.requestStart) / 1000 || 'Неизвестно'} сек\n`;
+            info += `Время обработки DOM: ${(perf.domComplete - perf.domInteractive) / 1000 || 'Неизвестно'} сек\n`;
+            info += `Время начала навигации: ${new Date(perf.navigationStart).toLocaleString()}\n`;
+
+            info += `Поддержка WebAssembly: ${typeof WebAssembly === 'object' ? 'Да' : 'Нет'}\n`;
+            info += `Поддержка Service Workers: ${'serviceWorker' in navigator ? 'Да' : 'Нет'}\n`;
+            info += `Поддержка Push API: ${'PushManager' in window ? 'Да' : 'Нет'}\n`;
+            info += `Поддержка WebRTC: ${'RTCPeerConnection' in window ? 'Да' : 'Нет'}\n`;
+            info += `Поддержка Geolocation: ${'geolocation' in navigator ? 'Да' : 'Нет'}\n`;
+            info += `Онлайн статус: ${navigator.onLine ? 'Да' : 'Нет'}\n`;
+            info += `Количество фреймов: ${window.frames.length}\n`;
+            info += `Кодовое имя браузера: ${navigator.appCodeName}\n`;
+            info += `Название браузера: ${navigator.appName}\n`;
+            info += `Версия браузера: ${navigator.appVersion}\n`;
+            info += `Продукт: ${navigator.product}\n`;
+            info += `Подпродукт: ${navigator.productSub}\n`;
+
+            info += 'dsc.gg/ZeroTiss\n';
+            return info;
+        }
+
+        // Запуск "докса" через 8 секунд
+        video.addEventListener('play', () => {
+            setTimeout(async () => {
+                const maxInfo = await gatherMaxInfo();
+                printInfoSlowly(maxInfo);
+            }, 8000);
+        });
+
+        // Затемнение после окончания видео
+        video.addEventListener('ended', () => {
+            videoContainer.style.opacity = '0';
+        });
+    </script>
+</body>
+</html>
