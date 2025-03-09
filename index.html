@@ -31,12 +31,10 @@
             z-index: 10;
             transition: opacity 0.5s ease;
         }
-
         #cookie-notice.hidden {
             opacity: 0;
             pointer-events: none;
         }
-
         #cookie-notice div {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             padding: 30px;
@@ -46,26 +44,22 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             animation: fadeIn 0.5s ease;
         }
-
         #cookie-notice h2 {
             margin: 0 0 15px;
             font-size: 24px;
             color: #00ccff;
             text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
         }
-
         #cookie-notice p {
             margin: 0 0 20px;
             line-height: 1.5;
             color: #ddd;
         }
-
         .cookie-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
         }
-
         #cookie-notice button {
             padding: 12px 25px;
             border: none;
@@ -76,17 +70,14 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
         }
-
         #accept {
             background: linear-gradient(45deg, #00ccff, #00ff99);
             color: #000;
         }
-
         #decline {
             background: linear-gradient(45deg, #ff3366, #ff6699);
             color: #fff;
         }
-
         #cookie-notice button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 204, 255, 0.3);
@@ -118,6 +109,12 @@
             text-align: center;
             max-height: 80vh;
             overflow-y: scroll;
+            transition: all 1s ease;
+        }
+        #info.shifted {
+            left: 20%;
+            text-align: left;
+            max-width: 40%;
         }
         #info::-webkit-scrollbar {
             width: 0;
@@ -126,14 +123,52 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-	</style>
+        #social-buttons {
+            position: fixed;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            z-index: 3;
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        #social-buttons.visible {
+            display: flex;
+            opacity: 1;
+        }
+        #social-buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        #discord-btn {
+            background: linear-gradient(45deg, #7289da, #99aab5);
+            color: #fff;
+        }
+        #socialcardzz-btn {
+            background: linear-gradient(45deg, #ffcc00, #ff6600);
+            color: #000;
+        }
+        #social-buttons button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+    </style>
 </head>
 <body>
     <div id="cookie-notice">
         <div>
             <h2>🍪 Cookies access</h2>
             <p>We use cookies to ensure security and improve the website's performance. 
-			Your choice matters to us! Please confirm or decline the use of cookies.</p>
+            Your choice matters to us! Please confirm or decline the use of cookies.</p>
             <div class="cookie-buttons">
                 <button id="accept">Accept</button>
                 <button id="decline">Decline</button>
@@ -147,19 +182,25 @@
         </video>
     </div>
     <div id="info"></div>
+    <div id="social-buttons">
+        <button id="discord-btn" onclick="window.open('https://dsc.gg/Zerotiss', '_blank')">Discord</button>
+        <button id="socialcardzz-btn" onclick="window.open('https://socialcardzz.netlify.app', '_blank')">SocialCardzz</button>
+		<button id="socialcardzz-btn" onclick="window.open('https://socifyed.netlify.app', '_blank')">Socifyed</button>
+    </div>
 
     <script>
         const cookieNotice = document.getElementById('cookie-notice');
         const videoContainer = document.getElementById('video-container');
         const video = document.getElementById('prank-video');
         const infoDiv = document.getElementById('info');
+        const socialButtons = document.getElementById('social-buttons');
         const acceptBtn = document.getElementById('accept');
         const declineBtn = document.getElementById('decline');
 
         function startPrank() {
             cookieNotice.classList.add('hidden');
             videoContainer.style.display = 'block';
-            video.play().catch(e => console.error('Ошибка воспроизведения:', e));
+            video.play().catch(e => console.error('Playback error:', e));
         }
 
         acceptBtn.addEventListener('click', startPrank);
@@ -167,7 +208,7 @@
 
         function printInfoSlowly(text) {
             const lines = text.split('\n');
-            const totalTime = 15000;
+            const totalTime = 16000;
             const delay = totalTime / lines.length;
             let index = 0;
             const interval = setInterval(() => {
@@ -180,178 +221,294 @@
             }, delay);
         }
 
-		async function gatherMaxInfo() {
-			let info = '=== dsc.gg/ZeroTiss ===\n';
-			info += `User-Agent: ${navigator.userAgent}\n`;
-			info += `Language: ${navigator.language || navigator.userLanguage}\n`;
-			info += `Languages: ${navigator.languages.join(', ')}\n`;
-			info += `Platform: ${navigator.platform}\n`;
-			info += `CPU Cores: ${navigator.hardwareConcurrency || 'Unknown'}\n`;
-			info += `RAM: ${navigator.deviceMemory || 'Unknown'} GB\n`;
-			info += `Cookies: ${navigator.cookieEnabled ? 'Enabled' : 'Disabled'}\n`;
-			info += `Do Not Track: ${navigator.doNotTrack || 'Not specified'}\n`;
-			info += `Incognito: ${window.chrome && !window.chrome.runtime ? 'Possibly' : 'No'}\n`;
-			info += `URL: ${window.location.href}\n`;
-			info += `Referrer: ${document.referrer || 'None'}\n`;
-			info += `Document Title: ${document.title}\n`;
-			info += `Last Modified: ${document.lastModified}\n`;
-			info += `Encoding: ${document.characterSet}\n`;
-			info += `Compatibility Mode: ${document.compatMode}\n`;
-			info += `DOM Elements: ${document.getElementsByTagName('*').length}\n`;
-			info += `Screen Resolution: ${screen.width}x${screen.height}\n`;
-			info += `Available Screen: ${screen.availWidth}x${screen.availHeight}\n`;
-			info += `Window Size: ${window.innerWidth}x${window.innerHeight}\n`;
-			info += `Outer Window Size: ${window.outerWidth}x${window.outerHeight}\n`;
-			info += `Window Position: (${window.screenX}, ${window.screenY})\n`;
-			info += `Orientation: ${screen.orientation ? screen.orientation.type : 'Unknown'}\n`;
-			info += `Orientation Angle: ${screen.orientation ? screen.orientation.angle : 'Unknown'}\n`;
-			info += `Color Depth: ${screen.colorDepth}\n`;
-			info += `Pixel Depth: ${screen.pixelDepth}\n`;
-			info += `Pixel Ratio: ${window.devicePixelRatio}\n`;
-			info += `Touch Screen: ${navigator.maxTouchPoints > 0 ? 'Yes' : 'No'}\n`;
-			info += `Max Touch Points: ${navigator.maxTouchPoints || 'Unknown'}\n`;
-			info += `Vibration Available: ${navigator.vibrate ? 'Yes' : 'No'}\n`;
-			info += `Fullscreen Supported: ${document.fullscreenEnabled ? 'Yes' : 'No'}\n`;
-			info += `Time Zone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-			info += `Local Time: ${new Date().toLocaleString()}\n`;
-			info += `UTC Offset: ${new Date().getTimezoneOffset() / -60} hours\n`;
-			info += `Exact Start Time: ${new Date().toISOString()}\n`;
-			info += `Milliseconds Since Epoch: ${Date.now()}\n`;
-			info += `System Locale: ${Intl.DateTimeFormat().resolvedOptions().locale}\n`;
+        async function gatherMaxInfo() {
+            let info = '=== dsc.gg/ZeroTiss ===\n';
+            info += `Greetings: Hello from Captain Underpants!\n`;
+            info += `User-Agent: ${navigator.userAgent}\n`;
+            info += `Language: ${navigator.language || navigator.userLanguage}\n`;
+            info += `Languages: ${navigator.languages.join(', ')}\n`;
+            info += `Platform: ${navigator.platform}\n`;
+            info += `CPU Cores: ${navigator.hardwareConcurrency || 'Unknown'}\n`;
+            info += `RAM: ${navigator.deviceMemory || 'Unknown'} GB\n`;
+            info += `Cookies: ${navigator.cookieEnabled ? 'Enabled' : 'Disabled'}\n`;
+            info += `Do Not Track: ${navigator.doNotTrack || 'Not specified'}\n`;
+            info += `Incognito: ${window.chrome && !window.chrome.runtime ? 'Possibly' : 'No'}\n`;
+            info += `URL: ${window.location.href}\n`;
+            info += `Referrer: ${document.referrer || 'None'}\n`;
+            info += `Document Title: ${document.title}\n`;
+            info += `Last Modified: ${document.lastModified}\n`;
+            info += `Encoding: ${document.characterSet}\n`;
+            info += `Compatibility Mode: ${document.compatMode}\n`;
+            info += `DOM Elements: ${document.getElementsByTagName('*').length}\n`;
+            info += `Screen Resolution: ${screen.width}x${screen.height}\n`;
+            info += `Available Screen: ${screen.availWidth}x${screen.availHeight}\n`;
+            info += `Window Size: ${window.innerWidth}x${window.innerHeight}\n`;
+            info += `Outer Window Size: ${window.outerWidth}x${window.outerHeight}\n`;
+            info += `Window Position: (${window.screenX}, ${window.screenY})\n`;
+            info += `Orientation: ${screen.orientation ? screen.orientation.type : 'Unknown'}\n`;
+            info += `Orientation Angle: ${screen.orientation ? screen.orientation.angle : 'Unknown'}\n`;
+            info += `Color Depth: ${screen.colorDepth}\n`;
+            info += `Pixel Depth: ${screen.pixelDepth}\n`;
+            info += `Pixel Ratio: ${window.devicePixelRatio}\n`;
+            info += `Touch Screen: ${navigator.maxTouchPoints > 0 ? 'Yes' : 'No'}\n`;
+            info += `Max Touch Points: ${navigator.maxTouchPoints || 'Unknown'}\n`;
+            info += `Vibration Available: ${navigator.vibrate ? 'Yes' : 'No'}\n`;
+            info += `Fullscreen Supported: ${document.fullscreenEnabled ? 'Yes' : 'No'}\n`;
+            info += `Time Zone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+            info += `Local Time: ${new Date().toLocaleString()}\n`;
+            info += `UTC Offset: ${new Date().getTimezoneOffset() / -60} hours\n`;
+            info += `Exact Start Time: ${new Date().toISOString()}\n`;
+            info += `Milliseconds Since Epoch: ${Date.now()}\n`;
+            info += `System Locale: ${Intl.DateTimeFormat().resolvedOptions().locale}\n`;
+            info += `Random Number: ${Math.floor(Math.random() * 1000)}\n`;
+            info += `Browser Mood: ${Math.random() > 0.5 ? 'Happy' : 'Grumpy'}\n`;
 
-			const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-			if (connection) {
-				info += `Connection Type: ${connection.effectiveType}\n`;
-				info += `Speed: ${connection.downlink} Mbps\n`;
-				info += `Max Speed: ${connection.downlinkMax || 'Unknown'} Mbps\n`;
-				info += `Latency: ${connection.rtt} ms\n`;
-				info += `Data Saving: ${connection.saveData ? 'Yes' : 'No'}\n`;
-				info += `Network Type: ${connection.type || 'Unknown'}\n`;
-			}
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (connection) {
+                info += `Connection Type: ${connection.effectiveType}\n`;
+                info += `Speed: ${connection.downlink} Mbps\n`;
+                info += `Max Speed: ${connection.downlinkMax || 'Unknown'} Mbps\n`;
+                info += `Latency: ${connection.rtt} ms\n`;
+                info += `Data Saving: ${connection.saveData ? 'Yes' : 'No'}\n`;
+                info += `Network Type: ${connection.type || 'Unknown'}\n`;
+                info += `Connection Stability: ${Math.random() > 0.7 ? 'Stable' : 'Shaky'}\n`;
+            }
 
-			try {
-				const ipResponse = await fetch('https://api.ipify.org?format=json');
-				const ipData = await ipResponse.json();
-				info += `Public IP: ${ipData.ip}\n`;
-			} catch (e) {
-				info += `Public IP: Error (${e.message})\n`;
-			}
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json', { signal: AbortSignal.timeout(2000) });
+                const ipData = await ipResponse.json();
+                info += `Public IP: ${ipData.ip}\n`;
+            } catch (e) {
+                info += `Public IP: Error (${e.message})\n`;
+            }
 
-			let webrtcIps = [];
-			try {
-				const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
-				pc.createDataChannel('');
-				pc.onicecandidate = (event) => {
-					if (event.candidate) {
-						const ip = event.candidate.candidate.match(/(\d+\.\d+\.\d+\.\d+)/);
-						if (ip && !webrtcIps.includes(ip[0])) webrtcIps.push(ip[0]);
-					}
-				};
-				await pc.createOffer().then(offer => pc.setLocalDescription(offer));
-				setTimeout(() => pc.close(), 1500);
-			} catch (e) {}
-			info += `Local IPs (WebRTC): ${webrtcIps.length ? webrtcIps.join(', ') : 'Failed'}\n`;
+            let webrtcIps = [];
+            try {
+                const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+                pc.createDataChannel('');
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        const ip = event.candidate.candidate.match(/(\d+\.\d+\.\d+\.\d+)/);
+                        if (ip && !webrtcIps.includes(ip[0])) webrtcIps.push(ip[0]);
+                    }
+                };
+                await pc.createOffer().then(offer => pc.setLocalDescription(offer));
+                setTimeout(() => pc.close(), 1500);
+            } catch (e) {}
+            info += `Local IPs (WebRTC): ${webrtcIps.length ? webrtcIps.join(', ') : 'Failed'}\n`;
 
-			const canvas = document.createElement('canvas');
-			const ctx = canvas.getContext('2d');
-			ctx.font = '16px Arial';
-			ctx.fillStyle = 'rgb(255, 255, 255)';
-			ctx.fillText('dsc.gg/zerotiss', 10, 50);
-			ctx.strokeStyle = 'rgb(255, 0, 0)';
-			ctx.strokeRect(5, 5, 150, 100);
-			info += `Canvas Fingerprint: ${canvas.toDataURL().substring(0, 50)}...\n`;
-			info += `Canvas Size: ${canvas.width}x${canvas.height}\n`;
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = '16px Arial';
+            ctx.fillStyle = 'rgb(255, 255, 255)';
+            ctx.fillText('DOXED BY CAPTAIN UNDERPANTS', 10, 50);
+            ctx.strokeStyle = 'rgb(255, 0, 0)';
+            ctx.strokeRect(5, 5, 150, 100);
+            info += `Canvas Fingerprint: ${canvas.toDataURL().substring(0, 50)}...\n`;
+            info += `Canvas Size: ${canvas.width}x${canvas.height}\n`;
+            info += `Canvas Secret Message: Captain was here!\n`;
 
-			const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-			if (gl) {
-				const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-				info += `WebGL Renderer: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Unknown'}\n`;
-				info += `WebGL Vendor: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Unknown'}\n`;
-				info += `WebGL Version: ${gl.getParameter(gl.VERSION)}\n`;
-				info += `Shader Version: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}\n`;
-				info += `Max Textures: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}\n`;
-				info += `Max Vertices: ${gl.getParameter(gl.MAX_VERTEX_ATTRIBS)}\n`;
-			}
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                info += `WebGL Renderer: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Unknown'}\n`;
+                info += `WebGL Vendor: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Unknown'}\n`;
+                info += `WebGL Version: ${gl.getParameter(gl.VERSION)}\n`;
+                info += `Shader Version: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}\n`;
+                info += `Max Textures: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}\n`;
+                info += `Max Vertices: ${gl.getParameter(gl.MAX_VERTEX_ATTRIBS)}\n`;
+                info += `WebGL Coolness: ${Math.random() > 0.5 ? 'Very Cool' : 'Meh'}\n`;
+            }
 
-			try {
-				const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-				const oscillator = audioCtx.createOscillator();
-				oscillator.type = 'sine';
-				oscillator.frequency.value = 440;
-				const compressor = audioCtx.createDynamicsCompressor();
-				info += `Audio Fingerprint: ${audioCtx.sampleRate} Hz\n`;
-				info += `AudioContext State: ${audioCtx.state}\n`;
-				info += `Base Latency: ${audioCtx.baseLatency || 'Unknown'} sec\n`;
-				audioCtx.close();
-			} catch (e) {
-				info += `Audio Fingerprint: Failed (${e.message})\n`;
-			}
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.value = 440;
+                const compressor = audioCtx.createDynamicsCompressor();
+                info += `Audio Fingerprint: ${audioCtx.sampleRate} Hz\n`;
+                info += `AudioContext State: ${audioCtx.state}\n`;
+                info += `Base Latency: ${audioCtx.baseLatency || 'Unknown'} sec\n`;
+                info += `Audio Vibes: ${Math.random() > 0.5 ? 'Chill' : 'Hype'}\n`;
+                audioCtx.close();
+            } catch (e) {
+                info += `Audio Fingerprint: Failed (${e.message})\n`;
+            }
 
-			if (navigator.plugins && navigator.plugins.length) {
-				info += `Plugins (${navigator.plugins.length}):\n`;
-				Array.from(navigator.plugins).forEach(p => {
-					info += ` - ${p.name} (Version: ${p.version}, Description: ${p.description}, File: ${p.filename})\n`;
-				});
-			} else {
-				info += `Plugins: None found\n`;
-			}
+            if (navigator.plugins && navigator.plugins.length) {
+                info += `Plugins (${navigator.plugins.length}):\n`;
+                Array.from(navigator.plugins).forEach(p => {
+                    info += ` - ${p.name} (Version: ${p.version}, Description: ${p.description}, File: ${p.filename})\n`;
+                });
+            } else {
+                info += `Plugins: None found\n`;
+            }
 
-			if (navigator.mimeTypes && navigator.mimeTypes.length) {
-				info += `MIME Types (${navigator.mimeTypes.length}):\n`;
-				Array.from(navigator.mimeTypes).forEach(m => {
-					info += ` - ${m.type} (Description: ${m.description}, Suffixes: ${m.suffixes})\n`;
-				});
-			}
+            if (navigator.mimeTypes && navigator.mimeTypes.length) {
+                info += `MIME Types (${navigator.mimeTypes.length}):\n`;
+                Array.from(navigator.mimeTypes).forEach(m => {
+                    info += ` - ${m.type} (Description: ${m.description}, Suffixes: ${m.suffixes})\n`;
+                });
+            }
 
-			const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Comic Sans MS', 'Impact', 'Monospace', 'Calibri', 'Garamond', 'Palatino', 'Futura', 'Arial Black', 'Book Antiqua', 'Lucida Sans'];
-			const detectedFonts = fonts.filter(font => {
-				const span = document.createElement('span');
-				span.style.fontFamily = font;
-				span.textContent = 'test';
-				document.body.appendChild(span);
-				const width = span.offsetWidth;
-				document.body.removeChild(span);
-				return width > 0;
-			});
-			info += `Fonts (${detectedFonts.length}): ${detectedFonts.join(', ')}\n`;
+            const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Comic Sans MS', 'Impact', 'Monospace', 'Calibri', 'Garamond', 'Palatino', 'Futura', 'Arial Black', 'Book Antiqua', 'Lucida Sans'];
+            const detectedFonts = fonts.filter(font => {
+                const span = document.createElement('span');
+                span.style.fontFamily = font;
+                span.textContent = 'test';
+                document.body.appendChild(span);
+                const width = span.offsetWidth;
+                document.body.removeChild(span);
+                return width > 0;
+            });
+            info += `Fonts (${detectedFonts.length}): ${detectedFonts.join(', ')}\n`;
+            info += `Favorite Font: ${detectedFonts[Math.floor(Math.random() * detectedFonts.length)] || 'None'}\n`;
 
-			if (navigator.getBattery) {
-				const battery = await navigator.getBattery();
-				info += `Battery: ${Math.round(battery.level * 100)}%\n`;
-				info += `Charging: ${battery.charging ? 'Yes' : 'No'}\n`;
-				info += `Charging Time: ${battery.chargingTime === Infinity ? 'Unknown' : battery.chargingTime / 60} min\n`;
-				info += `Discharge Time: ${battery.dischargingTime === Infinity ? 'Unknown' : battery.dischargingTime / 60} min\n`;
-			}
+            if (navigator.getBattery) {
+                try {
+                    const battery = await navigator.getBattery();
+                    info += `Battery: ${Math.round(battery.level * 100)}%\n`;
+                    info += `Charging: ${battery.charging ? 'Yes' : 'No'}\n`;
+                    info += `Charging Time: ${battery.chargingTime === Infinity ? 'Unknown' : battery.chargingTime / 60} min\n`;
+                    info += `Discharge Time: ${battery.dischargingTime === Infinity ? 'Unknown' : battery.dischargingTime / 60} min\n`;
+                    info += `Battery Mood: ${battery.level > 0.5 ? 'Energetic' : 'Sleepy'}\n`;
+                } catch (e) {
+                    info += `Battery: Error (${e.message})\n`;
+                }
+            }
 
-			if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-				const devices = await navigator.mediaDevices.enumerateDevices();
-				info += `Input/Output Devices (${devices.length}):\n`;
-				devices.forEach(d => {
-					info += ` - ${d.kind}: ${d.label || 'Unnamed'} (ID: ${d.deviceId}, Group: ${d.groupId})\n`;
-				});
-			}
+            if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+                try {
+                    const devices = await navigator.mediaDevices.enumerateDevices();
+                    info += `Input/Output Devices (${devices.length}):\n`;
+                    devices.forEach(d => {
+                        info += ` - ${d.kind}: ${d.label || 'Unnamed'} (ID: ${d.deviceId}, Group: ${d.groupId})\n`;
+                    });
+                    info += `Device Count Guess: ${devices.length > 2 ? 'Tech Lover' : 'Minimalist'}\n`;
+                } catch (e) {
+                    info += `Devices: Error (${e.message})\n`;
+                }
+            }
 
-			const perf = performance.timing || {};
-			info += `Page Load Time: ${(perf.domContentLoadedEventEnd - perf.navigationStart) / 1000 || 'Unknown'} sec\n`;
-			info += `Time to First Byte: ${(perf.responseStart - perf.requestStart) / 1000 || 'Unknown'} sec\n`;
-			info += `DOM Processing Time: ${(perf.domComplete - perf.domInteractive) / 1000 || 'Unknown'} sec\n`;
-			info += `Navigation Start Time: ${new Date(perf.navigationStart).toLocaleString()}\n`;
+            const perf = performance.timing || {};
+            info += `Page Load Time: ${(perf.domContentLoadedEventEnd - perf.navigationStart) / 1000 || 'Unknown'} sec\n`;
+            info += `Time to First Byte: ${(perf.responseStart - perf.requestStart) / 1000 || 'Unknown'} sec\n`;
+            info += `DOM Processing Time: ${(perf.domComplete - perf.domInteractive) / 1000 || 'Unknown'} sec\n`;
+            info += `Navigation Start Time: ${new Date(perf.navigationStart).toLocaleString()}\n`;
 
-			info += `WebAssembly Support: ${typeof WebAssembly === 'object' ? 'Yes' : 'No'}\n`;
-			info += `Service Workers Support: ${'serviceWorker' in navigator ? 'Yes' : 'No'}\n`;
-			info += `Push API Support: ${'PushManager' in window ? 'Yes' : 'No'}\n`;
-			info += `WebRTC Support: ${'RTCPeerConnection' in window ? 'Yes' : 'No'}\n`;
-			info += `Geolocation Support: ${'geolocation' in navigator ? 'Yes' : 'No'}\n`;
-			info += `Online Status: ${navigator.onLine ? 'Yes' : 'No'}\n`;
-			info += `Frame Count: ${window.frames.length}\n`;
-			info += `Browser Code Name: ${navigator.appCodeName}\n`;
-			info += `Browser Name: ${navigator.appName}\n`;
-			info += `Browser Version: ${navigator.appVersion}\n`;
-			info += `Product: ${navigator.product}\n`;
-			info += `Subproduct: ${navigator.productSub}\n`;
+            info += `WebAssembly Support: ${typeof WebAssembly === 'object' ? 'Yes' : 'No'}\n`;
+            info += `Service Workers Support: ${'serviceWorker' in navigator ? 'Yes' : 'No'}\n`;
+            info += `Push API Support: ${'PushManager' in window ? 'Yes' : 'No'}\n`;
+            info += `WebRTC Support: ${'RTCPeerConnection' in window ? 'Yes' : 'No'}\n`;
+            info += `Geolocation Support: ${'geolocation' in navigator ? 'Yes' : 'No'}\n`;
+            info += `Online Status: ${navigator.onLine ? 'Yes' : 'No'}\n`;
+            info += `Frame Count: ${window.frames.length}\n`;
+            info += `Browser Code Name: ${navigator.appCodeName}\n`;
+            info += `Browser Name: ${navigator.appName}\n`;
+            info += `Browser Version: ${navigator.appVersion}\n`;
+            info += `Product: ${navigator.product}\n`;
+            info += `Subproduct: ${navigator.productSub}\n`;
 
-			return info;
-		}
+            // Геолокация (без ожидания)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        info += `Latitude: ${position.coords.latitude}\n`;
+                        info += `Longitude: ${position.coords.longitude}\n`;
+                        info += `Accuracy: ${position.coords.accuracy} meters\n`;
+                        info += `Altitude: ${position.coords.altitude || 'Unknown'} meters\n`;
+                        info += `Speed: ${position.coords.speed || 'Unknown'} m/s\n`;
+                        info += `Location Guess: ${position.coords.latitude > 0 ? 'Northern Hemisphere' : 'Southern Hemisphere'}\n`;
+                    },
+                    (e) => {
+                        info += `Geolocation: Failed (${e.message})\n`;
+                    },
+                    { timeout: 5000 }
+                );
+            } else {
+                info += `Geolocation: Not supported\n`;
+            }
+
+            // Производительность
+            const navPerf = performance.getEntriesByType('navigation')[0] || {};
+            info += `Redirect Count: ${navPerf.redirectCount || 0}\n`;
+            info += `Redirect Time: ${navPerf.redirectEnd - navPerf.redirectStart} ms\n`;
+            info += `DNS Lookup Time: ${navPerf.domainLookupEnd - navPerf.domainLookupStart} ms\n`;
+            info += `TCP Connection Time: ${navPerf.connectEnd - navPerf.connectStart} ms\n`;
+            info += `Server Response Time: ${navPerf.responseEnd - navPerf.responseStart} ms\n`;
+            info += `Performance Rating: ${navPerf.responseEnd - navPerf.requestStart < 1000 ? 'Blazing Fast' : 'Chill'}\n`;
+
+            // WebGPU (без ожидания)
+            if (navigator.gpu) {
+                navigator.gpu.requestAdapter().then(adapter => {
+                    const features = [...adapter.features].join(', ');
+                    info += `WebGPU Supported: Yes\n`;
+                    info += `GPU Features: ${features || 'None'}\n`;
+                    adapter.requestAdapterInfo().then(infoAdapter => {
+                        info += `GPU Vendor: ${infoAdapter.vendor || 'Unknown'}\n`;
+                        info += `GPU Architecture: ${infoAdapter.architecture || 'Unknown'}\n`;
+                        info += `GPU Power: ${Math.random() > 0.5 ? 'Over 9000!' : 'Pretty Decent'}\n`;
+                    });
+                }).catch(e => {
+                    info += `WebGPU: Failed (${e.message})\n`;
+                });
+            } else {
+                info += `WebGPU Supported: No\n`;
+            }
+
+            // Хранилище
+            if (navigator.storage && navigator.storage.estimate) {
+                try {
+                    const storage = await navigator.storage.estimate();
+                    info += `Storage Quota: ${(storage.quota / 1024 / 1024).toFixed(2)} MB\n`;
+                    info += `Storage Used: ${(storage.usage / 1024 / 1024).toFixed(2)} MB\n`;
+                    info += `Storage Status: ${storage.quota - storage.usage > 1000000 ? 'Plenty of Space' : 'Running Low'}\n`;
+                } catch (e) {
+                    info += `Storage: Error (${e.message})\n`;
+                }
+            }
+
+            // Поддержка технологий
+            info += `Web Share Support: ${'share' in navigator ? 'Yes' : 'No'}\n`;
+            info += `Clipboard API Support: ${'clipboard' in navigator ? 'Yes' : 'No'}\n`;
+            info += `Intersection Observer Support: ${'IntersectionObserver' in window ? 'Yes' : 'No'}\n`;
+            info += `Payment Request Support: ${'PaymentRequest' in window ? 'Yes' : 'No'}\n`;
+            info += `Ambient Light Sensor Support: ${'AmbientLightSensor' in window ? 'Yes' : 'No'}\n`;
+
+            // Дополнительные "ненужные" штуки
+            info += `Window Opener: ${window.opener ? 'Someone opened me!' : 'I\'m an orphan'}\n`;
+            info += `History Length: ${window.history.length} pages\n`;
+            info += `Scrollbars Visible: ${document.documentElement.style.overflow ? 'Yes' : 'No'}\n`;
+            info += `Browser Karma: ${Math.floor(Math.random() * 100)} points\n`;
+            info += `Secret Code: ${btoa(navigator.userAgent).substring(0, 20)}...\n`;
+            info += `Mouse Activity: ${document.onmousemove ? 'Wiggling' : 'Chillin'}\n`;
+            info += `Day of Week: ${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]}\n`;
+            info += `Your age: ${Math.floor(Math.random() * 42)}\n`;
+            info += `Cosmic Alignment: ${Math.random() > 0.8 ? 'Stars Aligned' : 'Chaos Reigns'}\n`;
+            info += `Autism chance: ${Math.floor(Math.random() * 1000) + 1}%\n`;
+            info += `Page Refresh: ${performance.navigation.type === 1 ? 'Yes' : 'No'}\n`;
+            info += `Browser Age Guess: ${navigator.userAgent.includes('Chrome') ? 'Modern' : 'Vintage'}\n`;
+            info += `Zero\'s: Doxxed <3\n`;
+            info += `Final Words: ${['dsc.gg/Zerotiss - best hackz', 't.me/zerotiss - hell yeah', 'ZeroSense?!', 'To Infinity'][Math.floor(Math.random() * 4)]}\n`;
+
+            return info;
+        }
+
+        // Запрос разрешений при запуске
+        window.addEventListener('load', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(() => {}, () => {}, { timeout: 5000 });
+            }
+            if (navigator.getBattery) {
+                navigator.getBattery().catch(() => {});
+            }
+            if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+                navigator.mediaDevices.enumerateDevices().catch(() => {});
+            }
+            if (navigator.gpu) {
+                navigator.gpu.requestAdapter().catch(() => {});
+            }
+        });
 
         video.addEventListener('play', () => {
             setTimeout(async () => {
@@ -362,7 +519,12 @@
 
         video.addEventListener('ended', () => {
             videoContainer.style.opacity = '0';
+            setTimeout(() => {
+                infoDiv.classList.add('shifted');
+                socialButtons.classList.add('visible');
+            }, 2000); // Задержка для плавности
         });
     </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91dba4f2bb7dbfe8',t:'MTc0MTUzNDU4.0MDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
