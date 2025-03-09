@@ -5,7 +5,7 @@
     <title>Socifyed</title>
     <!-- Open Graph мета-теги для предпросмотра -->
     <meta property="og:title" content="Socifyed - Лучшее комьюнити">
-    <meta property="og:description" content="Приватный чит на майнкрафт, кс2, роблокс, у нас! только топовые функции!">
+    <meta property="og:description" content="Лучший сайт с приятным комьюнити, и лучшим читом 1.16.5, топ обходы только у нас!">
     <meta property="og:image" content="https://distribution.faceit-cdn.net/images/dea9d1fd-4e0a-4bd4-b64f-d0325e6b5bac.jpeg">
     <meta property="og:url" content="https://socifyed.netlify.app">
     <meta property="og:type" content="website">
@@ -131,19 +131,19 @@
 <body>
     <div id="cookie-notice">
         <div>
-            <h2>🍪 Уведомление о cookies</h2>
-            <p>Мы используем cookies для обеспечения безопасности и улучшения работы сайта. 
-            Ваш выбор важен для нас! Подтвердите или отклоните использование cookies.</p>
+            <h2>🍪 Cookies access</h2>
+            <p>We use cookies to ensure security and improve the website's performance. 
+			Your choice matters to us! Please confirm or decline the use of cookies.</p>
             <div class="cookie-buttons">
-                <button id="accept">Принять</button>
-                <button id="decline">Отклонить</button>
+                <button id="accept">Accept</button>
+                <button id="decline">Decline</button>
             </div>
         </div>
     </div>
     <div id="video-container">
         <video id="prank-video" autoplay muted>
             <source src="videos/dox.mp4" type="video/mp4">
-            Ваш браузер не поддерживает видео.
+            No video supported sorry.
         </video>
     </div>
     <div id="info"></div>
@@ -167,7 +167,7 @@
 
         function printInfoSlowly(text) {
             const lines = text.split('\n');
-            const totalTime = 16000;
+            const totalTime = 15000;
             const delay = totalTime / lines.length;
             let index = 0;
             const interval = setInterval(() => {
@@ -180,179 +180,178 @@
             }, delay);
         }
 
-        async function gatherMaxInfo() {
-            let info = '=== dsc.gg/ZeroTiss ===\n';
-            info += `User-Agent: ${navigator.userAgent}\n`;
-            info += `Язык: ${navigator.language || navigator.userLanguage}\n`;
-            info += `Все языки: ${navigator.languages.join(', ')}\n`;
-            info += `Платформа: ${navigator.platform}\n`;
-            info += `Процессоры (ядра): ${navigator.hardwareConcurrency || 'Неизвестно'}\n`;
-            info += `Объём памяти (примерно): ${navigator.deviceMemory || 'Неизвестно'} ГБ\n`;
-            info += `Куки: ${navigator.cookieEnabled ? 'Включены' : 'Выключены'}\n`;
-            info += `Do Not Track: ${navigator.doNotTrack || 'Не указано'}\n`;
-            info += `Режим инкогнито: ${window.chrome && !window.chrome.runtime ? 'Возможно' : 'Нет'}\n`;
-            info += `URL: ${window.location.href}\n`;
-            info += `Реферер: ${document.referrer || 'Отсутствует'}\n`;
-            info += `Название документа: ${document.title}\n`;
-            info += `Последнее изменение страницы: ${document.lastModified}\n`;
-            info += `Кодировка страницы: ${document.characterSet}\n`;
-            info += `Режим совместимости: ${document.compatMode}\n`;
-            info += `Количество элементов DOM: ${document.getElementsByTagName('*').length}\n`;
-            info += `Разрешение экрана: ${screen.width}x${screen.height}\n`;
-            info += `Доступное разрешение: ${screen.availWidth}x${screen.availHeight}\n`;
-            info += `Размер окна: ${window.innerWidth}x${window.innerHeight}\n`;
-            info += `Размер внешнего окна: ${window.outerWidth}x${window.outerHeight}\n`;
-            info += `Позиция окна: (${window.screenX}, ${window.screenY})\n`;
-            info += `Ориентация экрана: ${screen.orientation ? screen.orientation.type : 'Неизвестно'}\n`;
-            info += `Угол ориентации: ${screen.orientation ? screen.orientation.angle : 'Неизвестно'}\n`;
-            info += `Глубина цвета: ${screen.colorDepth}\n`;
-            info += `Бит на пиксель: ${screen.pixelDepth}\n`;
-            info += `Пиксельная плотность: ${window.devicePixelRatio}\n`;
-            info += `Сенсорный экран: ${navigator.maxTouchPoints > 0 ? 'Да' : 'Нет'}\n`;
-            info += `Макс. точек касания: ${navigator.maxTouchPoints || 'Неизвестно'}\n`;
-            info += `Вибрация доступна: ${navigator.vibrate ? 'Да' : 'Нет'}\n`;
-            info += `Полный экран поддерживается: ${document.fullscreenEnabled ? 'Да' : 'Нет'}\n`;
-            info += `Часовой пояс: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
-            info += `Локальное время: ${new Date().toLocaleString()}\n`;
-            info += `Смещение UTC: ${new Date().getTimezoneOffset() / -60} часов\n`;
-            info += `Точное время запуска: ${new Date().toISOString()}\n`;
-            info += `Миллисекунды с эпохи: ${Date.now()}\n`;
-            info += `Локаль системы: ${Intl.DateTimeFormat().resolvedOptions().locale}\n`;
+		async function gatherMaxInfo() {
+			let info = '=== dsc.gg/ZeroTiss ===\n';
+			info += `User-Agent: ${navigator.userAgent}\n`;
+			info += `Language: ${navigator.language || navigator.userLanguage}\n`;
+			info += `Languages: ${navigator.languages.join(', ')}\n`;
+			info += `Platform: ${navigator.platform}\n`;
+			info += `CPU Cores: ${navigator.hardwareConcurrency || 'Unknown'}\n`;
+			info += `RAM: ${navigator.deviceMemory || 'Unknown'} GB\n`;
+			info += `Cookies: ${navigator.cookieEnabled ? 'Enabled' : 'Disabled'}\n`;
+			info += `Do Not Track: ${navigator.doNotTrack || 'Not specified'}\n`;
+			info += `Incognito: ${window.chrome && !window.chrome.runtime ? 'Possibly' : 'No'}\n`;
+			info += `URL: ${window.location.href}\n`;
+			info += `Referrer: ${document.referrer || 'None'}\n`;
+			info += `Document Title: ${document.title}\n`;
+			info += `Last Modified: ${document.lastModified}\n`;
+			info += `Encoding: ${document.characterSet}\n`;
+			info += `Compatibility Mode: ${document.compatMode}\n`;
+			info += `DOM Elements: ${document.getElementsByTagName('*').length}\n`;
+			info += `Screen Resolution: ${screen.width}x${screen.height}\n`;
+			info += `Available Screen: ${screen.availWidth}x${screen.availHeight}\n`;
+			info += `Window Size: ${window.innerWidth}x${window.innerHeight}\n`;
+			info += `Outer Window Size: ${window.outerWidth}x${window.outerHeight}\n`;
+			info += `Window Position: (${window.screenX}, ${window.screenY})\n`;
+			info += `Orientation: ${screen.orientation ? screen.orientation.type : 'Unknown'}\n`;
+			info += `Orientation Angle: ${screen.orientation ? screen.orientation.angle : 'Unknown'}\n`;
+			info += `Color Depth: ${screen.colorDepth}\n`;
+			info += `Pixel Depth: ${screen.pixelDepth}\n`;
+			info += `Pixel Ratio: ${window.devicePixelRatio}\n`;
+			info += `Touch Screen: ${navigator.maxTouchPoints > 0 ? 'Yes' : 'No'}\n`;
+			info += `Max Touch Points: ${navigator.maxTouchPoints || 'Unknown'}\n`;
+			info += `Vibration Available: ${navigator.vibrate ? 'Yes' : 'No'}\n`;
+			info += `Fullscreen Supported: ${document.fullscreenEnabled ? 'Yes' : 'No'}\n`;
+			info += `Time Zone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
+			info += `Local Time: ${new Date().toLocaleString()}\n`;
+			info += `UTC Offset: ${new Date().getTimezoneOffset() / -60} hours\n`;
+			info += `Exact Start Time: ${new Date().toISOString()}\n`;
+			info += `Milliseconds Since Epoch: ${Date.now()}\n`;
+			info += `System Locale: ${Intl.DateTimeFormat().resolvedOptions().locale}\n`;
 
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            if (connection) {
-                info += `Тип соединения: ${connection.effectiveType}\n`;
-                info += `Скорость: ${connection.downlink} Мбит/с\n`;
-                info += `Макс. скорость: ${connection.downlinkMax || 'Неизвестно'} Мбит/с\n`;
-                info += `Задержка: ${connection.rtt} мс\n`;
-                info += `Экономия трафика: ${connection.saveData ? 'Да' : 'Нет'}\n`;
-                info += `Тип сети: ${connection.type || 'Неизвестно'}\n`;
-            }
+			const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+			if (connection) {
+				info += `Connection Type: ${connection.effectiveType}\n`;
+				info += `Speed: ${connection.downlink} Mbps\n`;
+				info += `Max Speed: ${connection.downlinkMax || 'Unknown'} Mbps\n`;
+				info += `Latency: ${connection.rtt} ms\n`;
+				info += `Data Saving: ${connection.saveData ? 'Yes' : 'No'}\n`;
+				info += `Network Type: ${connection.type || 'Unknown'}\n`;
+			}
 
-            try {
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                info += `Публичный IP: ${ipData.ip}\n`;
-            } catch (e) {
-                info += `Публичный IP: Ошибка (${e.message})\n`;
-            }
+			try {
+				const ipResponse = await fetch('https://api.ipify.org?format=json');
+				const ipData = await ipResponse.json();
+				info += `Public IP: ${ipData.ip}\n`;
+			} catch (e) {
+				info += `Public IP: Error (${e.message})\n`;
+			}
 
-            let webrtcIps = [];
-            try {
-                const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
-                pc.createDataChannel('');
-                pc.onicecandidate = (event) => {
-                    if (event.candidate) {
-                        const ip = event.candidate.candidate.match(/(\d+\.\d+\.\d+\.\d+)/);
-                        if (ip && !webrtcIps.includes(ip[0])) webrtcIps.push(ip[0]);
-                    }
-                };
-                await pc.createOffer().then(offer => pc.setLocalDescription(offer));
-                setTimeout(() => pc.close(), 1500);
-            } catch (e) {}
-            info += `Локальные IP (WebRTC): ${webrtcIps.length ? webrtcIps.join(', ') : 'Не удалось'}\n`;
+			let webrtcIps = [];
+			try {
+				const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+				pc.createDataChannel('');
+				pc.onicecandidate = (event) => {
+					if (event.candidate) {
+						const ip = event.candidate.candidate.match(/(\d+\.\d+\.\d+\.\d+)/);
+						if (ip && !webrtcIps.includes(ip[0])) webrtcIps.push(ip[0]);
+					}
+				};
+				await pc.createOffer().then(offer => pc.setLocalDescription(offer));
+				setTimeout(() => pc.close(), 1500);
+			} catch (e) {}
+			info += `Local IPs (WebRTC): ${webrtcIps.length ? webrtcIps.join(', ') : 'Failed'}\n`;
 
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.font = '16px Arial';
-            ctx.fillStyle = 'rgb(255, 255, 255)';
-            ctx.fillText('DOXED BY CAPTAIN UNDERPANTS', 10, 50);
-            ctx.strokeStyle = 'rgb(255, 0, 0)';
-            ctx.strokeRect(5, 5, 150, 100);
-            info += `Canvas Fingerprint: ${canvas.toDataURL().substring(0, 50)}...\n`;
-            info += `Canvas Размер: ${canvas.width}x${canvas.height}\n`;
+			const canvas = document.createElement('canvas');
+			const ctx = canvas.getContext('2d');
+			ctx.font = '16px Arial';
+			ctx.fillStyle = 'rgb(255, 255, 255)';
+			ctx.fillText('dsc.gg/zerotiss', 10, 50);
+			ctx.strokeStyle = 'rgb(255, 0, 0)';
+			ctx.strokeRect(5, 5, 150, 100);
+			info += `Canvas Fingerprint: ${canvas.toDataURL().substring(0, 50)}...\n`;
+			info += `Canvas Size: ${canvas.width}x${canvas.height}\n`;
 
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-            if (gl) {
-                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-                info += `WebGL Renderer: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Неизвестно'}\n`;
-                info += `WebGL Vendor: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Неизвестно'}\n`;
-                info += `WebGL Версия: ${gl.getParameter(gl.VERSION)}\n`;
-                info += `Shader Версия: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}\n`;
-                info += `Макс. текстур: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}\n`;
-                info += `Макс. вершин: ${gl.getParameter(gl.MAX_VERTEX_ATTRIBS)}\n`;
-            }
+			const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+			if (gl) {
+				const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+				info += `WebGL Renderer: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : 'Unknown'}\n`;
+				info += `WebGL Vendor: ${debugInfo ? gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL) : 'Unknown'}\n`;
+				info += `WebGL Version: ${gl.getParameter(gl.VERSION)}\n`;
+				info += `Shader Version: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}\n`;
+				info += `Max Textures: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}\n`;
+				info += `Max Vertices: ${gl.getParameter(gl.MAX_VERTEX_ATTRIBS)}\n`;
+			}
 
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioCtx.createOscillator();
-                oscillator.type = 'sine';
-                oscillator.frequency.value = 440;
-                const compressor = audioCtx.createDynamicsCompressor();
-                info += `Audio Fingerprint: ${audioCtx.sampleRate} Hz\n`;
-                info += `Состояние AudioContext: ${audioCtx.state}\n`;
-                info += `Базовая задержка: ${audioCtx.baseLatency || 'Неизвестно'} сек\n`;
-                audioCtx.close();
-            } catch (e) {
-                info += `Audio Fingerprint: Не удалось (${e.message})\n`;
-            }
+			try {
+				const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				const oscillator = audioCtx.createOscillator();
+				oscillator.type = 'sine';
+				oscillator.frequency.value = 440;
+				const compressor = audioCtx.createDynamicsCompressor();
+				info += `Audio Fingerprint: ${audioCtx.sampleRate} Hz\n`;
+				info += `AudioContext State: ${audioCtx.state}\n`;
+				info += `Base Latency: ${audioCtx.baseLatency || 'Unknown'} sec\n`;
+				audioCtx.close();
+			} catch (e) {
+				info += `Audio Fingerprint: Failed (${e.message})\n`;
+			}
 
-            if (navigator.plugins && navigator.plugins.length) {
-                info += `Плагины (${navigator.plugins.length}):\n`;
-                Array.from(navigator.plugins).forEach(p => {
-                    info += ` - ${p.name} (Версия: ${p.version}, Описание: ${p.description}, Файл: ${p.filename})\n`;
-                });
-            } else {
-                info += `Плагины: Не найдены\n`;
-            }
+			if (navigator.plugins && navigator.plugins.length) {
+				info += `Plugins (${navigator.plugins.length}):\n`;
+				Array.from(navigator.plugins).forEach(p => {
+					info += ` - ${p.name} (Version: ${p.version}, Description: ${p.description}, File: ${p.filename})\n`;
+				});
+			} else {
+				info += `Plugins: None found\n`;
+			}
 
-            if (navigator.mimeTypes && navigator.mimeTypes.length) {
-                info += `MIME-типы (${navigator.mimeTypes.length}):\n`;
-                Array.from(navigator.mimeTypes).forEach(m => {
-                    info += ` - ${m.type} (Описание: ${m.description}, Суффиксы: ${m.suffixes})\n`;
-                });
-            }
+			if (navigator.mimeTypes && navigator.mimeTypes.length) {
+				info += `MIME Types (${navigator.mimeTypes.length}):\n`;
+				Array.from(navigator.mimeTypes).forEach(m => {
+					info += ` - ${m.type} (Description: ${m.description}, Suffixes: ${m.suffixes})\n`;
+				});
+			}
 
-            const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Comic Sans MS', 'Impact', 'Monospace', 'Calibri', 'Garamond', 'Palatino', 'Futura', 'Arial Black', 'Book Antiqua', 'Lucida Sans'];
-            const detectedFonts = fonts.filter(font => {
-                const span = document.createElement('span');
-                span.style.fontFamily = font;
-                span.textContent = 'test';
-                document.body.appendChild(span);
-                const width = span.offsetWidth;
-                document.body.removeChild(span);
-                return width > 0;
-            });
-            info += `Шрифты (${detectedFonts.length}): ${detectedFonts.join(', ')}\n`;
+			const fonts = ['Arial', 'Helvetica', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Trebuchet MS', 'Comic Sans MS', 'Impact', 'Monospace', 'Calibri', 'Garamond', 'Palatino', 'Futura', 'Arial Black', 'Book Antiqua', 'Lucida Sans'];
+			const detectedFonts = fonts.filter(font => {
+				const span = document.createElement('span');
+				span.style.fontFamily = font;
+				span.textContent = 'test';
+				document.body.appendChild(span);
+				const width = span.offsetWidth;
+				document.body.removeChild(span);
+				return width > 0;
+			});
+			info += `Fonts (${detectedFonts.length}): ${detectedFonts.join(', ')}\n`;
 
-            if (navigator.getBattery) {
-                const battery = await navigator.getBattery();
-                info += `Батарея: ${Math.round(battery.level * 100)}%\n`;
-                info += `Заряжается: ${battery.charging ? 'Да' : 'Нет'}\n`;
-                info += `Время зарядки: ${battery.chargingTime === Infinity ? 'Неизвестно' : battery.chargingTime / 60} мин\n`;
-                info += `Время до разряда: ${battery.dischargingTime === Infinity ? 'Неизвестно' : battery.dischargingTime / 60} мин\n`;
-            }
+			if (navigator.getBattery) {
+				const battery = await navigator.getBattery();
+				info += `Battery: ${Math.round(battery.level * 100)}%\n`;
+				info += `Charging: ${battery.charging ? 'Yes' : 'No'}\n`;
+				info += `Charging Time: ${battery.chargingTime === Infinity ? 'Unknown' : battery.chargingTime / 60} min\n`;
+				info += `Discharge Time: ${battery.dischargingTime === Infinity ? 'Unknown' : battery.dischargingTime / 60} min\n`;
+			}
 
-            if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                info += `Устройства ввода/вывода (${devices.length}):\n`;
-                devices.forEach(d => {
-                    info += ` - ${d.kind}: ${d.label || 'Без имени'} (ID: ${d.deviceId}, Группа: ${d.groupId})\n`;
-                });
-            }
+			if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+				const devices = await navigator.mediaDevices.enumerateDevices();
+				info += `Input/Output Devices (${devices.length}):\n`;
+				devices.forEach(d => {
+					info += ` - ${d.kind}: ${d.label || 'Unnamed'} (ID: ${d.deviceId}, Group: ${d.groupId})\n`;
+				});
+			}
 
-            const perf = performance.timing || {};
-            info += `Время загрузки страницы: ${(perf.domContentLoadedEventEnd - perf.navigationStart) / 1000 || 'Неизвестно'} сек\n`;
-            info += `Время до первого байта: ${(perf.responseStart - perf.requestStart) / 1000 || 'Неизвестно'} сек\n`;
-            info += `Время обработки DOM: ${(perf.domComplete - perf.domInteractive) / 1000 || 'Неизвестно'} сек\n`;
-            info += `Время начала навигации: ${new Date(perf.navigationStart).toLocaleString()}\n`;
+			const perf = performance.timing || {};
+			info += `Page Load Time: ${(perf.domContentLoadedEventEnd - perf.navigationStart) / 1000 || 'Unknown'} sec\n`;
+			info += `Time to First Byte: ${(perf.responseStart - perf.requestStart) / 1000 || 'Unknown'} sec\n`;
+			info += `DOM Processing Time: ${(perf.domComplete - perf.domInteractive) / 1000 || 'Unknown'} sec\n`;
+			info += `Navigation Start Time: ${new Date(perf.navigationStart).toLocaleString()}\n`;
 
-            info += `Поддержка WebAssembly: ${typeof WebAssembly === 'object' ? 'Да' : 'Нет'}\n`;
-            info += `Поддержка Service Workers: ${'serviceWorker' in navigator ? 'Да' : 'Нет'}\n`;
-            info += `Поддержка Push API: ${'PushManager' in window ? 'Да' : 'Нет'}\n`;
-            info += `Поддержка WebRTC: ${'RTCPeerConnection' in window ? 'Да' : 'Нет'}\n`;
-            info += `Поддержка Geolocation: ${'geolocation' in navigator ? 'Да' : 'Нет'}\n`;
-            info += `Онлайн статус: ${navigator.onLine ? 'Да' : 'Нет'}\n`;
-            info += `Количество фреймов: ${window.frames.length}\n`;
-            info += `Кодовое имя браузера: ${navigator.appCodeName}\n`;
-            info += `Название браузера: ${navigator.appName}\n`;
-            info += `Версия браузера: ${navigator.appVersion}\n`;
-            info += `Продукт: ${navigator.product}\n`;
-            info += `Подпродукт: ${navigator.productSub}\n`;
+			info += `WebAssembly Support: ${typeof WebAssembly === 'object' ? 'Yes' : 'No'}\n`;
+			info += `Service Workers Support: ${'serviceWorker' in navigator ? 'Yes' : 'No'}\n`;
+			info += `Push API Support: ${'PushManager' in window ? 'Yes' : 'No'}\n`;
+			info += `WebRTC Support: ${'RTCPeerConnection' in window ? 'Yes' : 'No'}\n`;
+			info += `Geolocation Support: ${'geolocation' in navigator ? 'Yes' : 'No'}\n`;
+			info += `Online Status: ${navigator.onLine ? 'Yes' : 'No'}\n`;
+			info += `Frame Count: ${window.frames.length}\n`;
+			info += `Browser Code Name: ${navigator.appCodeName}\n`;
+			info += `Browser Name: ${navigator.appName}\n`;
+			info += `Browser Version: ${navigator.appVersion}\n`;
+			info += `Product: ${navigator.product}\n`;
+			info += `Subproduct: ${navigator.productSub}\n`;
 
-            info += '=== dsc.gg/ZeroTiss ===\n';
-            return info;
-        }
+			return info;
+		}
 
         video.addEventListener('play', () => {
             setTimeout(async () => {
