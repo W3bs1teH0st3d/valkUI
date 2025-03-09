@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Socifyed</title>
     <!-- Open Graph мета-теги для предпросмотра -->
-    <meta property="og:title" content="Socifyed - Лучшие обходы ФТ">
-    <meta property="og:description" content="Лучший сайт с приятным комьюнити, и лучшим читом 1.16.5, топ обходы только у нас!">
+    <meta property="og:title" content="Socifyed - Лучшее комьюнити">
+    <meta property="og:description" content="Приватный чит на майнкрафт, кс2, роблокс, у нас! только топовые функции!">
     <meta property="og:image" content="https://distribution.faceit-cdn.net/images/dea9d1fd-4e0a-4bd4-b64f-d0325e6b5bac.jpeg">
     <meta property="og:url" content="https://socifyed.netlify.app">
     <meta property="og:type" content="website">
@@ -23,35 +23,73 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 10;
-            text-align: center;
+            transition: opacity 0.5s ease;
         }
+
         #cookie-notice.hidden {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
         }
+
         #cookie-notice div {
-            background: #222;
-            padding: 20px;
-            border: 1px solid #fff;
-            border-radius: 5px;
-            max-width: 500px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 550px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 0.5s ease;
         }
+
+        #cookie-notice h2 {
+            margin: 0 0 15px;
+            font-size: 24px;
+            color: #00ccff;
+            text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+        }
+
+        #cookie-notice p {
+            margin: 0 0 20px;
+            line-height: 1.5;
+            color: #ddd;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         #cookie-notice button {
-            margin: 10px;
-            padding: 10px 20px;
-            background: #fff;
-            color: #000;
+            padding: 12px 25px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
             font-family: 'Courier New', monospace;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
+
+        #accept {
+            background: linear-gradient(45deg, #00ccff, #00ff99);
+            color: #000;
+        }
+
+        #decline {
+            background: linear-gradient(45deg, #ff3366, #ff6699);
+            color: #fff;
+        }
+
         #cookie-notice button:hover {
-            background: #ddd;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 204, 255, 0.3);
         }
         #video-container {
             position: fixed;
@@ -88,19 +126,22 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-    </style>
+	</style>
 </head>
 <body>
     <div id="cookie-notice">
         <div>
-            <img src="https://2no.co/Socifyed" width="1" height="1" style="display: none;">
-            <p>Этот сайт использует куки для персонализации и защиты данных. Без вашего согласия мы не сможем обеспечить безопасность и функциональность. Пожалуйста, подтвердите или отклоните использование куки.</p>
-            <button id="accept">Подтвердить</button>
-            <button id="decline">Отклонить</button>
+            <h2>🍪 Уведомление о cookies</h2>
+            <p>Мы используем cookies для обеспечения безопасности и улучшения работы сайта. 
+            Ваш выбор важен для нас! Подтвердите или отклоните использование cookies.</p>
+            <div class="cookie-buttons">
+                <button id="accept">Принять</button>
+                <button id="decline">Отклонить</button>
+            </div>
         </div>
     </div>
     <div id="video-container">
-        <video id="prank-video" autoplay>
+        <video id="prank-video" autoplay muted>
             <source src="videos/dox.mp4" type="video/mp4">
             Ваш браузер не поддерживает видео.
         </video>
