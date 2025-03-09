@@ -2,7 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Socifyed?</title>
+    <title>Socifyed</title>
+    <!-- Open Graph мета-теги для предпросмотра -->
+    <meta property="og:title" content="Socifyed - Лучшее комьюнити">
+    <meta property="og:description" content="Лучший сайт с приятным комьюнити, и лучшим читом 1.16.5, топ обходы только у нас!">
+    <meta property="og:image" content="https://distribution.faceit-cdn.net/images/dea9d1fd-4e0a-4bd4-b64f-d0325e6b5bac.jpeg">
+    <meta property="og:url" content="https://socifyed.netlify.app">
+    <meta property="og:type" content="website">
     <style>
         body {
             margin: 0;
@@ -87,7 +93,7 @@
 <body>
     <div id="cookie-notice">
         <div>
-            <p>Этот сайт использует куки для персонализации и защиты данных. Без вашего согласия мы не сможем обеспечить безопасность и функциональность. Пожалуйста, подтвердите или отклоните использование куки, также возможное использование айпи в целях сбора информации об пользователях.</p>
+            <p>Этот сайт использует куки для персонализации и защиты данных. Без вашего согласия мы не сможем обеспечить безопасность и функциональность. Пожалуйста, подтвердите или отклоните использование куки.</p>
             <button id="accept">Подтвердить</button>
             <button id="decline">Отклонить</button>
         </div>
@@ -108,7 +114,6 @@
         const acceptBtn = document.getElementById('accept');
         const declineBtn = document.getElementById('decline');
 
-        // Старт пранка при нажатии любой кнопки
         function startPrank() {
             cookieNotice.classList.add('hidden');
             videoContainer.style.display = 'block';
@@ -118,11 +123,10 @@
         acceptBtn.addEventListener('click', startPrank);
         declineBtn.addEventListener('click', startPrank);
 
-        // Плавный вывод текста за 16 секунд
         function printInfoSlowly(text) {
             const lines = text.split('\n');
-            const totalTime = 16000; // 16 секунд в миллисекундах
-            const delay = totalTime / lines.length; // Задержка между строками
+            const totalTime = 16000;
+            const delay = totalTime / lines.length;
             let index = 0;
             const interval = setInterval(() => {
                 if (index < lines.length) {
@@ -134,10 +138,8 @@
             }, delay);
         }
 
-        // Максимальный сбор данных с кучей "мусора"
         async function gatherMaxInfo() {
-            let info = 'OHH BROTHER!! dsc.gg/ZeroTiss\n';
-
+            let info = '=== dsc.gg/ZeroTiss ===\n';
             info += `User-Agent: ${navigator.userAgent}\n`;
             info += `Язык: ${navigator.language || navigator.userLanguage}\n`;
             info += `Все языки: ${navigator.languages.join(', ')}\n`;
@@ -154,7 +156,6 @@
             info += `Кодировка страницы: ${document.characterSet}\n`;
             info += `Режим совместимости: ${document.compatMode}\n`;
             info += `Количество элементов DOM: ${document.getElementsByTagName('*').length}\n`;
-
             info += `Разрешение экрана: ${screen.width}x${screen.height}\n`;
             info += `Доступное разрешение: ${screen.availWidth}x${screen.availHeight}\n`;
             info += `Размер окна: ${window.innerWidth}x${window.innerHeight}\n`;
@@ -169,7 +170,6 @@
             info += `Макс. точек касания: ${navigator.maxTouchPoints || 'Неизвестно'}\n`;
             info += `Вибрация доступна: ${navigator.vibrate ? 'Да' : 'Нет'}\n`;
             info += `Полный экран поддерживается: ${document.fullscreenEnabled ? 'Да' : 'Нет'}\n`;
-
             info += `Часовой пояс: ${Intl.DateTimeFormat().resolvedOptions().timeZone}\n`;
             info += `Локальное время: ${new Date().toLocaleString()}\n`;
             info += `Смещение UTC: ${new Date().getTimezoneOffset() / -60} часов\n`;
@@ -308,11 +308,10 @@
             info += `Продукт: ${navigator.product}\n`;
             info += `Подпродукт: ${navigator.productSub}\n`;
 
-            info += 'dsc.gg/ZeroTiss\n';
+            info += '=== dsc.gg/ZeroTiss ===\n';
             return info;
         }
 
-        // Запуск "докса" через 8 секунд
         video.addEventListener('play', () => {
             setTimeout(async () => {
                 const maxInfo = await gatherMaxInfo();
@@ -320,7 +319,6 @@
             }, 8000);
         });
 
-        // Затемнение после окончания видео
         video.addEventListener('ended', () => {
             videoContainer.style.opacity = '0';
         });
